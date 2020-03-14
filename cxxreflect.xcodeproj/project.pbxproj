@@ -32,6 +32,7 @@
 		5FFFF7DF241D082C002E1AC4 /* String.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = String.h; sourceTree = "<group>"; };
 		5FFFF7E0241D088F002E1AC4 /* Object.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Object.h; sourceTree = "<group>"; };
 		5FFFF7E1241D08E9002E1AC4 /* Properties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Properties.h; sourceTree = "<group>"; };
+		5FFFF7EB241D26EE002E1AC4 /* Interface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Interface.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +80,7 @@
 				5FFFF7DF241D082C002E1AC4 /* String.h */,
 				5FFFF7E0241D088F002E1AC4 /* Object.h */,
 				5FFFF7E1241D08E9002E1AC4 /* Properties.h */,
+				5FFFF7EB241D26EE002E1AC4 /* Interface.h */,
 			);
 			path = CXFramework;
 			sourceTree = "<group>";
