@@ -40,5 +40,6 @@ bool Equals(const CX::Object& obj) const { return this->GetType() == obj.GetType
 }\
 class T : public CX::__BasicObject_##T, public CX::Stats::Tracker<T>
 #define extends(...) , __VA_ARGS__
+#define implements extends
 
 #endif /* Object_h */

@@ -13,6 +13,7 @@
 #include <ctime>
 #include "CXFramework/Object.h"
 #include "CXFramework/Properties.h"
+#include "CXFramework/Interface.h"
 
 cxclass(Player)
 {

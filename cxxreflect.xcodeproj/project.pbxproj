@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5F22A62C241939B2001C8D8B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F22A62B241939B2001C8D8B /* main.cpp */; };
+		5FFFF7EE241D2BBC002E1AC4 /* Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FFFF7EC241D2BBC002E1AC4 /* Interface.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,6 +34,7 @@
 		5FFFF7E0241D088F002E1AC4 /* Object.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Object.h; sourceTree = "<group>"; };
 		5FFFF7E1241D08E9002E1AC4 /* Properties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Properties.h; sourceTree = "<group>"; };
 		5FFFF7EB241D26EE002E1AC4 /* Interface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Interface.h; sourceTree = "<group>"; };
+		5FFFF7EC241D2BBC002E1AC4 /* Interface.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Interface.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,9 +80,10 @@
 				5FFFF7E2241D0A87002E1AC4 /* utils */,
 				5FFFF7DE241D081C002E1AC4 /* Stats.h */,
 				5FFFF7DF241D082C002E1AC4 /* String.h */,
-				5FFFF7E0241D088F002E1AC4 /* Object.h */,
 				5FFFF7E1241D08E9002E1AC4 /* Properties.h */,
+				5FFFF7E0241D088F002E1AC4 /* Object.h */,
 				5FFFF7EB241D26EE002E1AC4 /* Interface.h */,
+				5FFFF7EC241D2BBC002E1AC4 /* Interface.cpp */,
 			);
 			path = CXFramework;
 			sourceTree = "<group>";
@@ -151,6 +154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F22A62C241939B2001C8D8B /* main.cpp in Sources */,
+				5FFFF7EE241D2BBC002E1AC4 /* Interface.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
