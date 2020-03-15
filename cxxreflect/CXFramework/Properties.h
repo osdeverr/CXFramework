@@ -13,7 +13,6 @@
 
 // Macros for convenience
 #define CXXREFLECT_INTERNAL_PLISTNAME __CXProperties // Name of the class static field
-#define CXXREFLECT_STRINGIFY(s) # s
 
 /*
  --- 'properties' macro ---
@@ -33,7 +32,7 @@
  );
  };
  */
-#define properties(T) \
+#define cxprops(T) \
 typedef T __CXBaseClass; \
 const std::string CXToJSON() const { \
 return CX::Serialization::JSON::Serialize(*this); \
@@ -68,8 +67,8 @@ constexpr static auto CXXREFLECT_INTERNAL_PLISTNAME = std::make_tuple
 #define property(...) property_vararg(__VA_ARGS__, property_customname, property_autoname)(__VA_ARGS__)
 
 // Internal macros for 'property'
-#define property_autoname(member) CX::Properties::Define(&__CXBaseClass::member, CXXREFLECT_STRINGIFY(member))
-#define property_customname(member, name) CX::Properties::Define(&__CXBaseClass::member, name)
+#define property_autoname(member) CX::Reflection::Internal::DefineProperty(&__CXBaseClass::member, CXSTRINGIFY(member))
+#define property_customname(member, name) CX::Reflection::Internal::DefineProperty(&__CXBaseClass::member, name)
 #define property_vararg(_1,_2,NAME,...) NAME
 
 /*
@@ -88,9 +87,9 @@ constexpr static auto CXXREFLECT_INTERNAL_PLISTNAME = std::make_tuple
  std::cout << "Value " << name << " = " << value << std::endl;
  } cxxenum_end;
  */
-#define enumerate(T, obj) \
+#define cxenum(T, obj) \
 constexpr auto nbProperties = std::tuple_size<decltype(T::CXXREFLECT_INTERNAL_PLISTNAME)>::value; \
-CX::Properties::ForIntSequence(std::make_index_sequence<nbProperties>{}, [&](auto i) { cxenum_init(T, obj);
+CX::Reflection::Internal::ForIntSequence(std::make_index_sequence<nbProperties>{}, [&](auto i) { cxenum_init(T, obj);
 
 // Internal macros for 'enumerate'
 #define cxenum_init(T, obj) \
@@ -104,39 +103,30 @@ using type = typename decltype(__property)::Type
 // Originally created for CXXReflect
 namespace CX
 {
-    namespace Properties
+    namespace Reflection
     {
-        template<class Class, typename MemberType>
-        struct PropertyImpl
+        namespace Internal
         {
-            constexpr PropertyImpl(MemberType Class::*aMember, const char* aName) : member{aMember}, name{aName} {}
-            MemberType Class::*member;
-            const char* name;
-            using Type = MemberType;
-        };
-        
-        template <typename T, T... S, typename F>
-        constexpr void ForIntSequence(std::integer_sequence<T, S...>, F&& f) {
-            using unpack_t = int[];
-            (void)unpack_t{(static_cast<void>((void) f(std::integral_constant<T, S>{})), 0)..., 0};
-        }
-        
-        template<typename Class, typename T>
-        constexpr auto Define(T Class::*member, const char* name) {
-            return PropertyImpl<Class, T>{member, name};
-        }
-        
-        class InvalidPropertyException : public std::exception
-        {
-        public:
-            InvalidPropertyException(const std::string& message) : mMessage(message) {}
-            const char* what()
+            template<class Class, typename MemberType>
+            struct PropertyImpl
             {
-                return (std::string("CX::Properties::InvalidPropertyException - ") + mMessage).c_str();
+                constexpr PropertyImpl(MemberType Class::*aMember, const char* aName) : member{aMember}, name{aName} {}
+                MemberType Class::*member;
+                const char* name;
+                using Type = MemberType;
+            };
+        
+            template <typename T, T... S, typename F>
+            constexpr void ForIntSequence(std::integer_sequence<T, S...>, F&& f) {
+                using unpack_t = int[];
+                (void)unpack_t{(static_cast<void>((void) f(std::integral_constant<T, S>{})), 0)..., 0};
             }
-        private:
-            std::string mMessage;
-        };
+        
+            template<typename Class, typename T>
+            constexpr auto DefineProperty(T Class::*member, const char* name) {
+                return PropertyImpl<Class, T>{member, name};
+            }
+        }
     }
 
     namespace Serialization
@@ -147,7 +137,7 @@ namespace CX
             const std::string Serialize(T& obj)
             {
                 nlohmann::json j;
-                enumerate(T, obj) {
+                cxenum(T, obj) {
                     j[name] = value;
                 } cxenum_end;
                 return j.dump(4);
@@ -158,7 +148,7 @@ namespace CX
             {
                 nlohmann::json j = nlohmann::json::parse(s);
                 T obj;
-                enumerate(T, obj)
+                cxenum(T, obj)
                 {
                     value = j.at(name).get<type>();
                 } cxenum_end;

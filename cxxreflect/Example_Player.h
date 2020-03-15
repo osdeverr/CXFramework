@@ -11,6 +11,7 @@
 #include <vector>
 #include <cstdint>
 #include <ctime>
+#include <iostream>
 #include "CXFramework/Object.h"
 #include "CXFramework/Properties.h"
 #include "CXFramework/Interface.h"
@@ -31,8 +32,13 @@ public:
     std::string mUsername;
     std::string mNickname;
     
+    void TestMethod()
+    {
+        std::cout << "TestMethod" << std::endl;
+    }
+    
     // Define properties for serialization
-    properties(Player) (
+    cxprops(Player) (
         property(mX, "PositionX"),
         property(mY, "PositionY"),
         property(mZ, "PositionZ"),

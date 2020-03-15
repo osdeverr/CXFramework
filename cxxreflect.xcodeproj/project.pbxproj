@@ -28,6 +28,7 @@
 		5F22A62B241939B2001C8D8B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		5F22A63724196877001C8D8B /* json.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = json.hpp; sourceTree = "<group>"; };
 		5F22A63824196B41001C8D8B /* Example_Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Example_Player.h; sourceTree = "<group>"; };
+		5F2CB894241E25E2002689B5 /* Methods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Methods.h; sourceTree = "<group>"; };
 		5FFFF7DB241CDBC5002E1AC4 /* debugbreak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = debugbreak.h; sourceTree = "<group>"; };
 		5FFFF7DE241D081C002E1AC4 /* Stats.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Stats.h; sourceTree = "<group>"; };
 		5FFFF7DF241D082C002E1AC4 /* String.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = String.h; sourceTree = "<group>"; };
@@ -81,8 +82,9 @@
 				5FFFF7DE241D081C002E1AC4 /* Stats.h */,
 				5FFFF7DF241D082C002E1AC4 /* String.h */,
 				5FFFF7E1241D08E9002E1AC4 /* Properties.h */,
-				5FFFF7E0241D088F002E1AC4 /* Object.h */,
 				5FFFF7EB241D26EE002E1AC4 /* Interface.h */,
+				5F2CB894241E25E2002689B5 /* Methods.h */,
+				5FFFF7E0241D088F002E1AC4 /* Object.h */,
 				5FFFF7EC241D2BBC002E1AC4 /* Interface.cpp */,
 			);
 			path = CXFramework;

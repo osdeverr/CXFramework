@@ -10,6 +10,7 @@
 #define String_h
 #include <string>
 
+#define CXSTRINGIFY(x) #x
 namespace CX
 {
     typedef std::string String;

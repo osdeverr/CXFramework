@@ -10,13 +10,16 @@
 #define Object_h
 #include "Stats.h"
 #include "String.h"
+#include "Methods.h"
+#include <vector>
 
 namespace CX
 {
     class Object
     {
     public:
-        typedef String Type;
+        using Type = String;
+        using Methods = std::vector<CX::Reflection::ClassMethod>;
         
         virtual ~Object() {}
         virtual Type GetType() const = 0;
@@ -27,19 +30,20 @@ namespace CX
 
 
 // Macros to create CX-capable classes
-#define STRINGIFY(x) #x
 
 #define cxclass(T) \
 namespace CX { \
-class __BasicObject_##T : public CX::Object { \
+class _BasicObject_##T : public CX::Object { \
 public: \
-CX::Object::Type GetType() const { return STRINGIFY(T); } \
-CX::String ToString() const { return STRINGIFY(T); } \
+operator CX::Object*() { return this; } \
+CX::Object::Type GetType() const { return CXSTRINGIFY(T); } \
+CX::String ToString() const { return CXSTRINGIFY(T); } \
 bool Equals(const CX::Object& obj) const { return this->GetType() == obj.GetType(); } \
 }; \
 }\
-class T : public CX::__BasicObject_##T, public CX::Stats::Tracker<T>
+class T : public CX::_BasicObject_##T, public CX::Stats::Tracker<T>
 #define extends(...) , __VA_ARGS__
 #define implements extends
+#define cxobject CX::Object*
 
 #endif /* Object_h */

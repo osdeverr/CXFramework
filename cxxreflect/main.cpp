@@ -33,11 +33,10 @@ public:
 };
 
 int main(int argc, const char * argv[]) {
-    /*
     Point p(100, 200);
     std::cout << p.ToString() << std::endl;
     for(int i = 0; i < 50; i++)
-        new Point(100, 100);
+        delete new Point(100, 100);
     std::cout <<
         "Stat info: " <<
         Point::CXMemoryUsage() <<
@@ -46,7 +45,7 @@ int main(int argc, const char * argv[]) {
         " active instances (" <<
         Point::CXNumCreated() <<
         " created overall)" <<
-        std::endl;*/
+        std::endl;
     
     Player pl;
     pl.mX = 100.f;
@@ -63,6 +62,9 @@ int main(int argc, const char * argv[]) {
         
     CX::String jsonData = pl.CXToJSON();
     std::cout << jsonData << std::endl;
+
+    cxobject obj = pl;
+    std::cout << obj->ToString();
 
     return 0;
 }
